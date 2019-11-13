@@ -1,0 +1,7 @@
+---
+
+- hosts: localhost
+  
+  tasks:
+    - debug:
+        msg: Running Ansible on {{ ansible_facts['nodename'] }}
