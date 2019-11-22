@@ -1,0 +1,33 @@
+name: CI
+
+on: [push]
+
+jobs:
+  macos:
+    name: Test playbook on macOS
+    runs-on: macOS-latest
+    
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install pip
+        run: sudo easy_install pip
+      
+      - name: Install Ansible
+        run: sudo pip install ansible 
+
+      - name: Test playbook
+        run: ansible-playbook workstation.yml
+  
+  ubuntu:
+    name: Test playbook on Ubuntu
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install Ansible
+        run: sudo apt-get install ansible
+      
+      - name: Test playbook
+        run: ansible-playbook workstation.yml
