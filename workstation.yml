@@ -8,3 +8,4 @@
 
   roles:
     - command_line_tools
+    - package_manager

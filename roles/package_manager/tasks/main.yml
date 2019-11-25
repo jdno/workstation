@@ -1,0 +1,15 @@
+---
+
+- include: macos.yml
+  when: ansible_os_family == 'Darwin'
+  tags:
+    - desktop
+    - package
+    - terminal
+
+- include: ubuntu.yml
+  when: ansible_os_family == 'Debian'
+  tags:
+    - desktop
+    - package
+    - terminal
