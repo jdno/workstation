@@ -1,0 +1,10 @@
+---
+
+# The Command Line Tools install developer tools such as Git and a compiler
+# tool chain on macOS.
+
+- include: macos.yml
+  when: ansible_os_family == 'Darwin'
+  tags:
+    - desktop
+    - terminal

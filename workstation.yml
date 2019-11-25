@@ -5,3 +5,6 @@
   tasks:
     - debug:
         msg: Running Ansible on {{ ansible_facts['nodename'] }}
+
+  roles:
+    - command_line_tools
