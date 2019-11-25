@@ -1,0 +1,19 @@
+---
+
+- name: Update all packages to the latest version.
+  apt:
+    upgrade: "yes"
+    force_apt_get: "yes"
+  become: "yes"
+
+- name: Remove obsolete packages from the cache.
+  apt:
+    autoclean: "yes"
+    force_apt_get: "yes"
+  become: "yes"
+
+- name: Remove obsolete dependencies.
+  apt:
+    autoremove: "yes"
+    force_apt_get: "yes"
+  become: "yes"
