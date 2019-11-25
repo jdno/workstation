@@ -11,7 +11,11 @@ Docker container. First, build the image:
 
 Then, run Ansible to test your changes:
 
-    $ docker run -v "$(pwd)/workstation.yml:/opt/ansible/workstation.yml" workstation:latest ansible-playbook workstation.yml
+    $ docker run -v "$(pwd):/opt/ansible" workstation:latest ansible-playbook workstation.yml
+
+Before committing any changes to the playbook, make sure to lint it:
+
+    $ docker run -v "$(pwd):/opt/ansible" workstation:latest ansible-lint -v workstation.yml
 
 ## License
 

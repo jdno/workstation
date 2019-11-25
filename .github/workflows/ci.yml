@@ -3,6 +3,19 @@ name: CI
 on: [push]
 
 jobs:
+  lint:
+    name: Lint playbook
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install Ansible Lint
+        run: sudo apt-get install ansible-lint
+
+      - name: Lint playbook
+        run: ansible-lint -v workstation.yml
+
   macos:
     name: Test playbook on macOS
     runs-on: macOS-latest
