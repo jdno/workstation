@@ -2,10 +2,10 @@
 
 - hosts: localhost
 
-  tasks:
-    - debug:
-        msg: Running Ansible on {{ ansible_facts['nodename'] }}
+  vars_files:
+    - variables.yml
 
   roles:
     - command_line_tools
     - package_manager
+    - git

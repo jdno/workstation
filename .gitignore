@@ -1,0 +1,2 @@
+# Ignore the variables file, which may contain sensitive information.
+variables.yml

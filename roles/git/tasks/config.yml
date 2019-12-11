@@ -1,0 +1,19 @@
+---
+
+- name: Configure Git user name.
+  git_config:
+    name: user.name
+    scope: global
+    value: "{{ git.username }}"
+
+- name: Configure Git user email.
+  git_config:
+    name: user.email
+    scope: global
+    value: "{{ git.email }}"
+
+- name: Set current branch as default push target.
+  git_config:
+      name: push.default
+      scope: global
+      value: current
