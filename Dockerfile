@@ -8,6 +8,8 @@ RUN apt-get update \
     && apt-get install -y  \
         ansible \
         ansible-lint \
+        curl \
+        openssh-client \
         software-properties-common \
     && apt-get clean
 
