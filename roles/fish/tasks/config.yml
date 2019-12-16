@@ -3,7 +3,6 @@
 - name: Discover location of fish executable.
   command: which fish
   register: fish
-  changed_when: "'fish' in fish.stdout"
 
 - name: Change default shell.
   user:
