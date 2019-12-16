@@ -1,0 +1,15 @@
+---
+
+- name: Install fish.
+  homebrew:
+    name: fish
+    state: present
+
+- name: Install coreutils.
+  homebrew:
+    name: coreutils
+    state: present
+
+- name: Register ls executable.
+  command: which gls
+  register: fish_ls_executable

@@ -1,0 +1,25 @@
+---
+
+- name: Add Launchpad PPA public key.
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 27557F056DC33CA5
+    state: present
+  become: "yes"
+
+- name: Add fish PPA.
+  apt_repository:
+    repo: deb http://ppa.launchpad.net/fish-shell/release-3/ubuntu bionic main
+    state: present
+  become: "yes"
+
+- name: Install fish.
+  apt:
+    name: fish
+    state: present
+    update_cache: "yes"
+  become: "yes"
+
+- name: Register ls executable.
+  command: which ls
+  register: fish_ls_executable
