@@ -8,6 +8,7 @@ RUN apt-get update \
     && apt-get install -y  \
         ansible \
         ansible-lint \
+        software-properties-common \
     && apt-get clean
 
 CMD ["ansible-playbook", "--version"]
