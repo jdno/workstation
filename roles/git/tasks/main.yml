@@ -1,20 +1,20 @@
 ---
 
-- include: macos.yml
+- include_tasks: macos.yml
   when: ansible_os_family == 'Darwin'
   tags:
     - desktop
     - git
     - terminal
 
-- include: ubuntu.yml
+- include_tasks: ubuntu.yml
   when: ansible_os_family == 'Debian'
   tags:
     - desktop
     - git
     - terminal
 
-- include: config.yml
+- include_tasks: config.yml
   tags:
     - desktop
     - git
