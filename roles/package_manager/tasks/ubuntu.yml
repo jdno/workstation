@@ -5,6 +5,7 @@
     upgrade: "yes"
     force_apt_get: "yes"
   become: "yes"
+  when: "ansible_env['GITHUB_ACTIONS'] is not defined"
 
 - name: Remove obsolete packages from the cache.
   apt:
