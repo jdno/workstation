@@ -1,0 +1,21 @@
+---
+
+- include_tasks: macos.yml
+  when: ansible_os_family == 'Darwin'
+  tags:
+    - desktop
+    - neovim
+    - terminal
+
+- include_tasks: ubuntu.yml
+  when: ansible_os_family == 'Debian'
+  tags:
+    - desktop
+    - neovim
+    - terminal
+
+- include_tasks: config.yml
+  tags:
+    - desktop
+    - neovim
+    - terminal
