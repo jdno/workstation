@@ -17,3 +17,10 @@
       name: push.default
       scope: global
       value: current
+
+- name: Copy Git functions.
+  template:
+    src: "{{ item }}"
+    dest: "{{ fish_functions_directory }}/{{ item | basename | regex_replace('.j2', '') }}"
+  with_fileglob:
+    - "templates/*.j2"
