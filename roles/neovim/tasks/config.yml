@@ -1,0 +1,12 @@
+---
+
+- name: Copy neovim configuration.
+  template:
+    src: "templates/init.vim.j2"
+    dest: "{{ ansible_env['HOME'] }}/.config/nvim/init.vim"
+
+- name: Set neovim as default editor in fish.
+  template:
+    src: "templates/neovim.fish.j2"
+    dest: "{{ fish_config_directory }}/neovim.fish"
+

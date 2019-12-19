@@ -1,0 +1,8 @@
+---
+
+- name: Install neovim.
+  apt:
+    name: neovim
+    state: present
+    update_cache: "yes"
+  become: "yes"
