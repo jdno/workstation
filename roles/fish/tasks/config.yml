@@ -48,7 +48,7 @@
   args:
     executable: "{{ fish.stdout }}"
 
-- name: Copy functions.
+- name: Copy shell functions.
   template:
     src: "{{ item }}"
     dest: "{{ fish_functions_directory }}/{{ item | basename | regex_replace('.j2', '') }}"
