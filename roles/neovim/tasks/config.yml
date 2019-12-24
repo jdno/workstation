@@ -1,9 +1,16 @@
 ---
 
+- name: Ensure neovim config directory exists.
+  file:
+    path: "{{ neovim_config_directory }}"
+    owner: "{{ ansible_user_id }}"
+    state: directory
+    mode: 0700
+
 - name: Copy neovim configuration.
   template:
     src: "templates/init.vim.j2"
-    dest: "{{ ansible_env['HOME'] }}/.config/nvim/init.vim"
+    dest: "{{ neovim_config_directory }}/init.vim"
 
 - name: Set neovim as default editor in fish.
   template:
