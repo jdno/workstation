@@ -1,5 +1,4 @@
 ---
-
 - hosts: localhost
 
   vars_files:
@@ -11,3 +10,4 @@
     - fish
     - git
     - neovim
+    - rust
