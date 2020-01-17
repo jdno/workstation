@@ -12,11 +12,22 @@
     scope: global
     value: "{{ git.email }}"
 
+- name: Create global excludes file.
+  file:
+    path: "{{ git_excludes_file }}"
+    state: touch
+
+- name: Set global excludes file.
+  git_config:
+      name: core.excludesfile
+      scope: global
+      value: "{{ git_excludes_file }}"
+
 - name: Set current branch as default push target.
   git_config:
-      name: push.default
-      scope: global
-      value: current
+    name: push.default
+    scope: global
+    value: current
 
 - name: Copy Git functions.
   template:
