@@ -16,4 +16,3 @@
   template:
     src: "templates/neovim.fish.j2"
     dest: "{{ fish_config_directory }}/neovim.fish"
-
