@@ -1,13 +1,4 @@
 ---
-- hosts: localhost
-
-  vars_files:
-    - variables.yml
-
-  roles:
-    - command_line_tools
-    - package_manager
-    - fish
-    - git
-    - neovim
-    - rust
+# The terminal playbook sets up the package manager, which means it must be run
+# before any other playbook.
+- import_playbook: terminal.yml

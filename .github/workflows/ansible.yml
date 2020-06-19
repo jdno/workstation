@@ -1,7 +1,8 @@
 ---
 name: Ansible
 
-on: [push]
+on:
+  - push
 
 jobs:
   lint:
