@@ -19,9 +19,9 @@
 
 - name: Set global excludes file.
   git_config:
-      name: core.excludesfile
-      scope: global
-      value: "{{ git_excludes_file }}"
+    name: core.excludesfile
+    scope: global
+    value: "{{ git_excludes_file }}"
 
 - name: Set current branch as default push target.
   git_config:
