@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+
+  vars_files:
+    - variables.yml
+
+  roles:
+    - command_line_tools
+    - package_manager
+    - fish
+    - git
+    - neovim
+    - rust
