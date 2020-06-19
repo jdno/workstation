@@ -1,10 +1,11 @@
-name: CI
+---
+name: Ansible
 
 on: [push]
 
 jobs:
   lint:
-    name: Lint playbook
+    name: Lint
     runs-on: ubuntu-latest
 
     steps:
@@ -17,26 +18,26 @@ jobs:
         run: ansible-lint -v workstation.yml
 
   macos:
-    name: Test playbook on macOS
+    name: Test (macos-latest)
     runs-on: macos-latest
-    
+
     steps:
       - uses: actions/checkout@v1
 
       - name: Install pip
         run: sudo easy_install pip
-      
+
       - name: Install Ansible
         run: sudo pip install ansible
 
-      - name: Copy variables.
+      - name: Copy variables
         run: cp variables.example.yml variables.yml
 
       - name: Test playbook
         run: ansible-playbook workstation.yml
-  
+
   ubuntu:
-    name: Test playbook on Ubuntu
+    name: Test (ubuntu-latest)
     runs-on: ubuntu-latest
 
     steps:
@@ -44,8 +45,8 @@ jobs:
 
       - name: Install Ansible
         run: sudo apt-get install ansible
-      
-      - name: Copy variables.
+
+      - name: Copy variables
         run: cp variables.example.yml variables.yml
 
       - name: Test playbook
