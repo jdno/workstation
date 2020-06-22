@@ -1,5 +1,4 @@
 ---
-
 - name: Configure Git user name.
   git_config:
     name: user.name
@@ -28,6 +27,12 @@
     name: push.default
     scope: global
     value: current
+
+- name: Enable pushing tags with their associated commits.
+  git_config:
+    name: push.followTags
+    scope: global
+    value: true
 
 - name: Copy Git functions.
   template:
