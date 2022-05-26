@@ -1,4 +1,0 @@
----
-# The terminal playbook sets up the package manager, which means it must be run
-# before any other playbook.
-- import_playbook: terminal.yml
