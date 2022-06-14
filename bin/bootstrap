@@ -15,4 +15,4 @@ if ! command -v ansible-pull &>/dev/null; then
 	brew install ansible
 fi
 
-ansible-pull -K -U https://github.com/jdno/workstation.git
+ANSIBLE_FORCE_COLOR=1 ansible-pull -K -U https://github.com/jdno/workstation.git
