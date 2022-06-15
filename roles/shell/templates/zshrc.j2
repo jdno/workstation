@@ -1,0 +1,18 @@
+# The following lines were added by compinstall
+zstyle :compinstall filename '{{ ansible_env['HOME'] }}.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
+setopt autocd
+bindkey -v
+# End of lines configured by zsh-newuser-install
+
+alias df="/bin/df -h"
+alias ll="gls -laGh --color --time-style=long-iso"
+alias ls="gls -Gh --color"
+alias path="echo $PATH | tr : '\n'"

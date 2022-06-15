@@ -1,0 +1,27 @@
+---
+- name: Install zsh.
+  homebrew:
+    name: zsh
+    state: present
+
+- name: Install coreutils.
+  homebrew:
+    name: coreutils
+    state: present
+
+- name: Discover location of zsh executable.
+  ansible.builtin.command: which zsh
+  register: zsh
+  changed_when: false
+
+- name: Change default shell.
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    shell: "{{ zsh.stdout }}"
+  become: true
+
+- name: Copy configuration for zsh.
+  ansible.builtin.template:
+    src: zshrc.j2
+    dest: "{{ ansible_env['HOME'] }}/.zshrc"
+    mode: 0644
