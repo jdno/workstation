@@ -1,0 +1,3 @@
+---
+dependencies:
+  - role: command_line_tools
