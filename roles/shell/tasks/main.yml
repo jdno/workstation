@@ -25,8 +25,29 @@
     shell: "{{ zsh.stdout }}"
   become: true
 
-- name: Copy configuration for zsh.
+- name: Create zsh configuration directory.
+  ansible.builtin.file:
+    path: "{{ zsh_config_dir }}"
+    owner: "{{ ansible_user_id }}"
+    state: directory
+    mode: 0700
+
+- name: Copy zshenv.
+  ansible.builtin.template:
+    src: zshenv.j2
+    dest: "{{ ansible_env['HOME'] }}/.zshenv"
+    mode: 0644
+
+- name: Copy zshrc.
   ansible.builtin.template:
     src: zshrc.j2
-    dest: "{{ ansible_env['HOME'] }}/.zshrc"
+    dest: "{{ zsh_config_dir }}/.zshrc"
     mode: 0644
+
+- name: Copy zsh aliases.
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ zsh_config_dir }}/{{ item | basename }}"
+    mode: 0644
+  with_fileglob:
+    - "files/*.zsh"
