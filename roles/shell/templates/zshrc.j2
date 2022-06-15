@@ -1,5 +1,5 @@
 # The following lines were added by compinstall
-zstyle :compinstall filename '{{ ansible_env['HOME'] }}/.zshrc'
+zstyle :compinstall filename '{{ zsh_config_dir }}/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -12,10 +12,9 @@ setopt autocd
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
-alias df="/bin/df -h"
-alias ll="gls -laGh --color --time-style=long-iso"
-alias ls="gls -Gh --color"
-alias path="echo $PATH | tr : '\n'"
+for file in {{ zsh_config_dir }}/*.zsh; do
+    source "${file}"
+done
 
 # Must be the last instructions
-source {{ homebrew_prefix }}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source "{{ homebrew_prefix }}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"

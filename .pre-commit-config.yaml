@@ -43,6 +43,7 @@ repos:
     hooks:
       - id: shellcheck
         name: shellcheck
+        args: [-e, SC1071, -e, SC1091]
       - id: shfmt
         name: shfmt
   - repo: https://github.com/ansible/ansible-lint
