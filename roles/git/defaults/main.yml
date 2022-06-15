@@ -1,0 +1,2 @@
+---
+git_excludes_file: "{{ ansible_env['HOME'] }}/.gitignore_global"
