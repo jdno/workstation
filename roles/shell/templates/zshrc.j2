@@ -1,5 +1,5 @@
 # The following lines were added by compinstall
-zstyle :compinstall filename '{{ ansible_env['HOME'] }}.zshrc'
+zstyle :compinstall filename '{{ ansible_env['HOME'] }}/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -16,3 +16,6 @@ alias df="/bin/df -h"
 alias ll="gls -laGh --color --time-style=long-iso"
 alias ls="gls -Gh --color"
 alias path="echo $PATH | tr : '\n'"
+
+# Must be the last instructions
+source {{ homebrew_prefix }}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
