@@ -8,7 +8,8 @@ Feel free to use it as inspiration and fork it.
 ## Getting Started
 
 The repository contains a [bootstrap script](bin/bootstrap) for macOS that can
-be run on a fresh machine. It installs [Homebrew] and [Ansible], and then runs
+be run on a fresh machine. It installs [Homebrew] and [Ansible], installs the
+required roles from [Ansible Galaxy](https://galaxy.ansible.com), and then runs
 the playbook with `ansible-pull`.
 
 Open a terminal and run the following command. You will be prompted for your
