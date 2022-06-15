@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# Enable strict mode for Bash
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+if [ $# -ne 1 ]; then
+	echo "Usage: bin/create-role <module>"
+	exit 1
+fi
+
+module="${1}"
+
+script_path=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
+project_path=$(cd "${script_path}" && cd ".." && pwd)
+
+folders=(
+	tasks
+	handlers
+	templates
+	files
+	vars
+	defaults
+	meta
+)
+
+cd "${project_path}"
+
+mkdir "${module}"
+cd "${module}"
+
+for folder in "${folders[@]}"; do
+	mkdir -p "${folder}"
+done
+
+main=(
+	tasks
+	handlers
+	vars
+	defaults
+	meta
+)
+
+for folder in "${main[@]}"; do
+	touch "${folder}/main.yml"
+done
