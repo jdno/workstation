@@ -1,9 +1,7 @@
 ---
 - hosts: localhost
   connection: local
-  become: true
 
-  tasks:
-    - name: print hello world
-      ansible.builtin.debug:
-        msg: "Hello, World!"
+  roles:
+    - role: elliotweiser.osx-command-line-tools
+    - role: geerlingguy.mac.homebrew
