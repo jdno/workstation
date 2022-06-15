@@ -4,6 +4,11 @@
     name: zsh
     state: present
 
+- name: Install zsh-syntax-highlighting.
+  homebrew:
+    name: zsh-syntax-highlighting
+    state: present
+
 - name: Install coreutils.
   homebrew:
     name: coreutils
