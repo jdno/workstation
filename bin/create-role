@@ -25,7 +25,7 @@ folders=(
 	meta
 )
 
-cd "${project_path}"
+cd "${project_path}/roles"
 
 mkdir "${module}"
 cd "${module}"
