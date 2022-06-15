@@ -1,0 +1,2 @@
+---
+neovim_config_directory: "{{ ansible_env['HOME'] }}/.config/nvim"

@@ -22,6 +22,12 @@
     scope: global
     value: "{{ git.signing_key }}"
 
+- name: Configure editor for commit messages.
+  git_config:
+    name: core.editor
+    scope: global
+    value: vim
+
 - name: Create global excludes file.
   ansible.builtin.copy:
     src: gitignore_global
