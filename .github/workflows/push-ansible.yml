@@ -1,0 +1,24 @@
+---
+name: Ansible
+
+"on":
+  push:
+    paths:
+      - "roles/"
+      - "ansible.cfg"
+      - "hosts"
+      - "local.yml"
+
+jobs:
+  lint:
+    name: Lint code
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Ansible Lint
+        uses: ansible-community/ansible-lint-action@v6.2.1
+        with:
+          path: local.yml
