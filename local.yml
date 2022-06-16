@@ -3,8 +3,8 @@
   connection: local
 
   roles:
-    - role: elliotweiser.osx-command-line-tools
-    - role: geerlingguy.mac.homebrew
-    - role: shell
-    - role: git
-    - role: neovim
+    - { role: elliotweiser.osx-command-line-tools, tags: ["base"] }
+    - { role: geerlingguy.mac.homebrew, tags: ["base"] }
+    - { role: shell, tags: ["base", "terminal"] }
+    - { role: git, tags: ["base", "terminal", "dev"] }
+    - { role: neovim, tags: ["base", "terminal"] }
