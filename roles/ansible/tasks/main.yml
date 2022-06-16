@@ -1,0 +1,14 @@
+---
+- name: Install Ansible.
+  homebrew:
+    name: ansible
+    state: present
+
+- name: Install Python3.
+  homebrew:
+    name: python@3.10
+
+- name: Install Ansible dependencies.
+  ansible.builtin.pip:
+    name: pexpect
+    state: present

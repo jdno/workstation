@@ -15,11 +15,26 @@ if ! command -v ansible-pull &>/dev/null; then
 	brew install ansible
 fi
 
-# Install dependencies
+# Install Ansible dependencies
 requirements_file="/tmp/requirements.yml"
 curl -fsSL -o "${requirements_file}" "https://raw.githubusercontent.com/jdno/workstation/HEAD/requirements.yml"
 ansible-galaxy install -r "${requirements_file}"
 rm "${requirements_file}"
+
+# Install GPG Suite
+if ! command -v gpg &>/dev/null; then
+	brew install gpg-suite-no-mail
+fi
+
+# Install 1Password CLI
+if ! command -v op &>/dev/null; then
+	brew install 1password-cli
+fi
+
+# Create 1Password session
+op account add
+# shellcheck disable=SC2046
+eval $(op signin)
 
 # Run playbook
 ANSIBLE_FORCE_COLOR=1 ansible-pull -K -U https://github.com/jdno/workstation.git
