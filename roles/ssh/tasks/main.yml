@@ -1,0 +1,18 @@
+---
+- name: Copy configuration for SSH.
+  ansible.builtin.copy:
+    src: config
+    dest: "{{ ansible_env['HOME'] }}/.ssh/config"
+    mode: 0600
+
+- name: Create directory for 1Password SSH Agent socket.
+  ansible.builtin.file:
+    path: "{{ ansible_env['HOME'] }}/.1password"
+    state: directory
+    mode: 0700
+
+- name: Symlink 1Password SSH Agent socket.
+  ansible.builtin.file:
+    src: "{{ ansible_env['HOME'] }}/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+    dest: "{{ ansible_env['HOME'] }}/.1password/agent.sock"
+    state: link
