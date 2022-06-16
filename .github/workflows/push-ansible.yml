@@ -14,9 +14,18 @@ jobs:
     name: Lint code
     runs-on: ubuntu-latest
 
+    env:
+      # Overwrite vault password script for tests
+      ANSIBLE_VAULT_PASSWORD_FILE: vault.gpg
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Overwrite vault with example variables
+        run: |
+          cd host_vars
+          cp test.yml localhost.yml
 
       - name: Ansible Lint
         uses: ansible-community/ansible-lint-action@v6.2.1

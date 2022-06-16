@@ -19,6 +19,16 @@ password once so that [Homebrew] can be installed.
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/jdno/workstation/HEAD/bin/bootstrap)"
 ```
 
+## Requirements
+
+Running the playbook has a few external dependencies that must be satisfied
+before Ansible can succeed. The [bootstrap script](bin/bootstrap) and the
+[Ansible script](bin/ansible-playbook) ensure that these conditions are met. If
+you run the playbook directly, ensure that the following resources exist:
+
+- The `gpg` executable must be in the `$PATH`
+- The user must be signed into an active session in the [1Password CLI]
+
 ## Secrets
 
 Some roles in the playbook require access to secrets, for example to restore the
@@ -26,15 +36,13 @@ private SSH keys. These secrets are stored inside a [1Password] vault and
 [looked up](https://docs.ansible.com/ansible/latest/collections/community/general/onepassword_lookup.html)
 at runtime when the playbook is executed.
 
-The credentials for the 1Password vault are taken from an Ansible vault file,
-which is encrypted using a GPG key.
-
 ## License
 
 This project is licensed under the terms of the [MIT License][mit]. See
 [LICENSE](./LICENSE) for more information.
 
 [1password]: https://1password.com/
+[1password cli]: https://developer.1password.com/docs/cli/
 [ansible]: https://www.ansible.com/
 [homebrew]: https://brew.sh/
 [mit]: https://opensource.org/licenses/MIT
