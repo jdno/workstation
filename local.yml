@@ -6,6 +6,7 @@
     - { role: elliotweiser.osx-command-line-tools, tags: ["base"] }
     - { role: geerlingguy.mac.homebrew, tags: ["base"] }
     - { role: ansible, tags: ["base"] }
+    - { role: ssh, tags: ["base", "terminal"] }
     - { role: shell, tags: ["base", "terminal"] }
-    - { role: git, tags: ["base", "terminal", "dev"] }
     - { role: neovim, tags: ["base", "terminal"] }
+    - { role: git, tags: ["base", "terminal", "dev"] }

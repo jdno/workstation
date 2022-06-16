@@ -5,6 +5,4 @@ rules:
   braces:
     min-spaces-inside: 1
     max-spaces-inside: 1
-  line-length:
-    ignore: |
-      .github/workflows/*
+  line-length: false
