@@ -1,0 +1,4 @@
+---
+dependencies:
+  - role: geerlingguy.mac.homebrew
+  - role: geerlingguy.mac.mas
