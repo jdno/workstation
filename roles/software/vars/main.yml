@@ -1,0 +1,27 @@
+---
+formulae:
+  - gifski
+
+casks:
+  - 1password
+  - alfred
+  - bartender
+  - betterdummy
+  - camo-studio
+  - discord
+  - docker
+  - firefox
+  - hey
+  - jetbrains-toolbox
+  - keka
+  - signal
+  - spotify
+  - warp
+  - yubico-yubikey-manager
+
+mac_store_apps:
+  - { id: 1569813296, name: "1Password for Safari" }
+  - { id: 441258766, name: "Magnet" }
+  - { id: 1289197285, name: "MindNode" }
+  - { id: 1346203938, name: "OmniFocus" }
+  - { id: 406825478, name: "Telephone" }
