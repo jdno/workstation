@@ -3,10 +3,16 @@
   connection: local
 
   roles:
+    # Set up tools
     - { role: elliotweiser.osx-command-line-tools, tags: ["base"] }
     - { role: geerlingguy.mac.homebrew, tags: ["base"] }
     - { role: ansible, tags: ["base"] }
+
+    # Configure terminal applications
     - { role: ssh, tags: ["base", "terminal"] }
     - { role: shell, tags: ["base", "terminal"] }
     - { role: neovim, tags: ["base", "terminal"] }
     - { role: git, tags: ["base", "terminal", "dev"] }
+
+    # Install programming languages
+    - { role: rust, tags: ["terminal", "dev"] }
