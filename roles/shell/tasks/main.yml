@@ -4,9 +4,14 @@
     name: zsh
     state: present
 
-- name: Install zsh-syntax-highlighting.
+- name: Install syntax highlighting for zsh.
   homebrew:
     name: zsh-syntax-highlighting
+    state: present
+
+- name: Install completions for zsh.
+  homebrew:
+    name: zsh-completions
     state: present
 
 - name: Install coreutils.
