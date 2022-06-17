@@ -1,8 +1,8 @@
 ---
-formulae:
+install_formulae:
   - gifski
 
-casks:
+install_casks:
   - 1password
   - alfred
   - bartender
@@ -19,7 +19,7 @@ casks:
   - warp
   - yubico-yubikey-manager
 
-mac_store_apps:
+install_mac_store_apps:
   - { id: 1569813296, name: "1Password for Safari" }
   - { id: 441258766, name: "Magnet" }
   - { id: 1289197285, name: "MindNode" }

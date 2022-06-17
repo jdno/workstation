@@ -8,16 +8,16 @@
   homebrew:
     name: "{{ item }}"
     state: present
-  with_items: "{{ formulae }}"
+  with_items: "{{ install_formulae }}"
 
 - name: Install applications through Homebrew Cask.
   homebrew_cask:
     name: "{{ item }}"
     state: present
-  with_items: "{{ casks }}"
+  with_items: "{{ install_casks }}"
 
 - name: Install applications from Mac App Store.
   ansible.builtin.import_role:
     name: geerlingguy.mac.mas
   vars:
-    mas_installed_apps: "{{ mac_store_apps }}"
+    mas_installed_apps: "{{ install_mac_store_apps }}"
