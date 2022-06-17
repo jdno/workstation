@@ -1,0 +1,6 @@
+---
+- name: Install applications from Mac App Store.
+  ansible.builtin.import_role:
+    name: geerlingguy.mac.mas
+  vars:
+    mas_uninstalled_apps: "{{ mac_store_apps }}"
