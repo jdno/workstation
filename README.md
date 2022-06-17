@@ -26,8 +26,9 @@ before Ansible can succeed. The [bootstrap script](bin/bootstrap) and the
 [Ansible script](bin/ansible-playbook) ensure that these conditions are met. If
 you run the playbook directly, ensure that the following resources exist:
 
-- The `gpg` executable must be in the `$PATH`
-- The user must be signed into an active session in the [1Password CLI]
+- The user must be signed into the Mac App Store.
+- The user must be signed into an active session in the [1Password CLI].
+- The `gpg` executable must be in the `$PATH`.
 
 ## Secrets
 
