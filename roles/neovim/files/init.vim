@@ -1,3 +1,7 @@
+" Enable syntax highlighting
+syntax on
+filetype on
+
 " Disable Arrow keys in Escape mode
 map <up> <nop>
 map <down> <nop>
