@@ -19,6 +19,3 @@
 
     # Install applications
     - { role: software, tags: ["workstation"] }
-
-    # Cleanup
-    - { role: cleanup, tags: ["workstation"] }

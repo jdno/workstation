@@ -1,6 +1,0 @@
----
-- name: Uninstall applications from Mac App Store.
-  ansible.builtin.import_role:
-    name: geerlingguy.mac.mas
-  vars:
-    mas_uninstalled_apps: "{{ uninstall_mac_store_apps }}"
