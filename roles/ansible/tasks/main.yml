@@ -4,6 +4,11 @@
     name: ansible
     state: present
 
+- name: Install ansible-lint.
+  homebrew:
+    name: ansible-lint
+    state: present
+
 - name: Install Python3.
   homebrew:
     name: python@3.10
