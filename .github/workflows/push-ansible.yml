@@ -4,7 +4,7 @@ name: Ansible
 "on":
   push:
     paths:
-      - "roles/"
+      - "roles/**"
       - "ansible.cfg"
       - "hosts"
       - "local.yml"
