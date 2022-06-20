@@ -15,7 +15,7 @@
 
 - name: Clone Git repository.
   ansible.builtin.git:
-    repo: "https://github.com/{{ project.repo.owner }}/{{ project.repo.name }}.git"
+    repo: "git@github.com:{{ project.repo.owner }}/{{ project.repo.name }}.git"
     dest: "{{ repo_directory.path }}"
   register: git_clone_result
   ignore_errors: true # noqa ignore-errors
