@@ -1,5 +1,13 @@
 ---
-- name: Install Rust programming language.
+- name: Install the Rust toolchain installer.
   homebrew:
-    name: rust
+    name: rustup-init
     state: present
+
+- name: Install the latest Rust stable toolchain.
+  ansible.builtin.command: rustup-init -y -c cargo rustfmt clippy
+
+- name: Add Rust to the PATH
+  ansible.builtin.copy:
+    src: "rust.zsh"
+    dest: "{{ zsh_config_dir }}/rust.zsh"
