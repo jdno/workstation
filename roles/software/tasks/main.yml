@@ -21,3 +21,57 @@
     name: geerlingguy.mac.mas
   vars:
     mas_installed_apps: "{{ install_mac_store_apps }}"
+
+# Workaround for https://github.com/kcrawford/dockutil/issues/127
+- name: Tap repository for dockutil.
+  community.general.homebrew_tap:
+    name: hpedrorodrigues/tools
+    state: present
+
+- name: Install a version of dockutil that supports Monterey.
+  homebrew_cask:
+    name: hpedrorodrigues/tools/dockutil
+    state: present
+
+- name: Configure the Dock.
+  ansible.builtin.import_role:
+    name: geerlingguy.mac.dock
+  vars:
+    dockitems_remove:
+      - Launchpad
+      - Safari
+      - Mail
+      - Maps
+      - Photos
+      - Contacts
+      - Reminders
+      - Notes
+      - TV
+      - Music
+      - Podcasts
+      - Keynote
+      - Pages
+      - Numbers
+      - App Store
+      - TextEdit
+      - News
+
+    dockitems_persist:
+      - name: Messages
+        path: /Applications/Messages.app/
+        pos: 2
+      - name: FaceTime
+        path: /Applications/FaceTime.app/
+        pos: 3
+      - name: Calendar
+        path: /Applications/Calendar.app/
+        pos: 4
+      - name: Firefox
+        path: /Applications/Firefox.app/
+        pos: 5
+      - name: Hey
+        path: /Applications/Hey.app/
+        pos: 6
+      - name: System Preferences
+        path: /Applications/System Preferences.app/
+        pos: 7
