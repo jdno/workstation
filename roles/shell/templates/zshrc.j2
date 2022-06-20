@@ -1,3 +1,8 @@
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# https://docs.brew.sh/Shell-Completion
+FPATH="{{ homebrew_prefix }}/share/zsh/site-functions:${FPATH}"
+
 # The following lines were added by compinstall
 zstyle :compinstall filename '{{ zsh_config_dir }}/.zshrc'
 
