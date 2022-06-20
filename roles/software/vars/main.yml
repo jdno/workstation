@@ -1,6 +1,7 @@
 ---
 install_formulae:
   - gifski
+  - pre-commit
 
 install_casks:
   - 1password
