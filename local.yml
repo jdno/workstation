@@ -3,9 +3,7 @@
   connection: local
 
   roles:
-    # Set up tools
-    - { role: elliotweiser.osx-command-line-tools, tags: ["base"] }
-    - { role: geerlingguy.mac.homebrew, tags: ["base"] }
+    # Set up Ansible
     - { role: ansible, tags: ["base"] }
 
     # Configure terminal applications
