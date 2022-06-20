@@ -18,7 +18,7 @@
     repo: "git@github.com:{{ project.repo.owner }}/{{ project.repo.name }}.git"
     dest: "{{ repo_directory.path }}"
   register: git_clone_result
-  ignore_errors: true # noqa ignore-errors
+  ignore_errors: true
 
 - name: Configure default Git user email.
   git_config:
@@ -36,15 +36,32 @@
     value: "{{ project.user.signing_key }}"
   when: project.user.signing_key is defined and project.user.signing_key != ""
 
+- name: Check if the project uses pre-commit.
+  ansible.builtin.stat:
+    path: "{{ repo_directory.path }}/.pre-commit-config.yaml"
+  register: pre_commit_yaml
+
+- name: Set up pre-commit.
+  ansible.builtin.command:
+    cmd: pre-commit install
+    chdir: "{{ repo_directory.path }}"
+  when: pre_commit_yaml.stat.exists
+  ignore_errors: true
+
+- name: Check if the project uses Rust.
+  ansible.builtin.stat:
+    path: "{{ repo_directory.path }}/Cargo.toml"
+  register: cargo_toml
+
 - name: Set up Rust toolchain.
   ansible.builtin.command:
     cmd: cargo build
     chdir: "{{ repo_directory.path }}"
-  when: project.repo.stack == "rust" and not archived
+  when: cargo_toml.stat.exists
   ignore_errors: true
 
 - name: Clean Rust artifacts.
   ansible.builtin.file:
     path: "{{ repo_directory.path }}/target"
     state: absent
-  when: project.repo.stack == "rust" and archived
+  when: cargo_toml.stat.exists and archived

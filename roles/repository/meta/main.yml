@@ -2,3 +2,4 @@
 dependencies:
   - role: git
   - role: rust
+  - role: software
