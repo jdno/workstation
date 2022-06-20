@@ -18,7 +18,7 @@
     repo: "https://github.com/{{ project.repo.owner }}/{{ project.repo.name }}.git"
     dest: "{{ repo_directory.path }}"
   register: git_clone_result
-  failed_when: "'Local modifications exist in repository' not in git_clone_result.msg"
+  ignore_errors: true # noqa ignore-errors
 
 - name: Configure default Git user email.
   git_config:
