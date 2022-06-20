@@ -1,0 +1,50 @@
+---
+- name: Create directory for owner.
+  ansible.builtin.file:
+    path: "{{ ansible_env['HOME'] }}/Developer/{{ project.repo.owner }}"
+    state: directory
+    mode: 0755
+  register: owner_directory
+
+- name: Create directory for repository.
+  ansible.builtin.file:
+    path: "{{ owner_directory.path }}/{{ project.repo.name }}"
+    state: directory
+    mode: 0755
+  register: repo_directory
+
+- name: Clone Git repository.
+  ansible.builtin.git:
+    repo: "https://github.com/{{ project.repo.owner }}/{{ project.repo.name }}.git"
+    dest: repo_directory
+  register: git_clone_result
+  failed_when: "'Local modifications exist in repository' not in git_clone_result.msg"
+
+- name: Configure default Git user email.
+  git_config:
+    scope: local
+    repo: "{{ repo_directory.path }}"
+    name: user.email
+    value: "{{ project.user.email }}"
+  when: project.user.email is defined and project.user.email != ""
+
+- name: Configure default PGP signing key.
+  git_config:
+    scope: local
+    repo: "{{ repo_directory.path }}"
+    name: user.signingkey
+    value: "{{ project.user.signing_key }}"
+  when: project.user.signing_key is defined and project.user.signing_key != ""
+
+- name: Set up Rust toolchain.
+  ansible.builtin.command:
+    cmd: cargo build
+    chdir: "{{ repo_directory.path }}"
+  when: project.repo.stack == "rust" and not archived
+  ignore_errors: true
+
+- name: Clean Rust artifacts.
+  ansible.builtin.file:
+    path: "{{ repo_directory.path }}/target"
+    state: absent
+  when: project.repo.stack == "rust" and archived
