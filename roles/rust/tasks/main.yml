@@ -4,10 +4,17 @@
     name: rustup-init
     state: present
 
+- name: Check if Rust is already installed.
+  ansible.builtin.stat:
+    path: "{{ ansible_env['HOME'] }}/.cargo/bin/cargo"
+  register: cargo
+
 - name: Install the latest Rust stable toolchain.
   ansible.builtin.command: rustup-init -y -c cargo rustfmt clippy
+  when: not cargo.stat.exists
 
 - name: Add Rust to the PATH
   ansible.builtin.copy:
     src: "rust.zsh"
     dest: "{{ zsh_config_dir }}/rust.zsh"
+    mode: 0644
