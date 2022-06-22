@@ -18,3 +18,13 @@
     src: "rust.zsh"
     dest: "{{ zsh_config_dir }}/rust.zsh"
     mode: 0644
+
+- name: Check if cargo-edit is installed.
+  ansible.builtin.command: cargo add --help
+  register: cargo_edit
+  changed_when: false
+  failed_when: cargo_edit.rc != 0 and cargo_edit.rc != 101
+
+- name: Install cargo-edit.
+  ansible.builtin.command: cargo install cargo-edit
+  when: cargo_edit.rc == 101
