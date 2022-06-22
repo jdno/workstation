@@ -6,6 +6,7 @@ install_formulae:
 
 install_casks:
   - 1password
+  - affinity-designer
   - alfred
   - bartender
   - betterdummy
