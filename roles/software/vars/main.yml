@@ -1,5 +1,6 @@
 ---
 install_formulae:
+  - gh
   - gifski
   - pre-commit
 
@@ -17,6 +18,7 @@ install_casks:
   - keka
   - signal
   - spotify
+  - vlc
   - warp
   - yubico-yubikey-manager
 
