@@ -56,3 +56,14 @@
     mode: 0644
   with_fileglob:
     - "files/*.zsh"
+
+- name: Install Starship shell prompt.
+  homebrew:
+    name: starship
+    state: present
+
+- name: Copy Starship configuration file.
+  ansible.builtin.copy:
+    src: starship.toml
+    dest: "{{ ansible_env['HOME'] }}/.config/starship.toml"
+    mode: 0644
