@@ -17,6 +17,7 @@
 
     # Install programming languages
     - { role: rust, tags: ["terminal", "dev"] }
+    - { role: terraform, tags: ["terminal", "dev"] }
 
     # Install applications
     - { role: software, tags: ["workstation"] }
