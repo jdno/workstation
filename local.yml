@@ -3,6 +3,9 @@
   connection: local
 
   roles:
+    # Set up tooling
+    - { role: geerlingguy.mac.homebrew, tags: ["base"] }
+
     # Set up Ansible
     - { role: ansible, tags: ["base"] }
 
