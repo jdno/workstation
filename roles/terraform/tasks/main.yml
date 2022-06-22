@@ -1,0 +1,25 @@
+---
+- name: Install the Terraform Version Manager.
+  homebrew:
+    name: tfenv
+    state: present
+
+- name: Check if Terraform is installed.
+  ansible.builtin.command: terraform --help
+  register: terraform
+  changed_when: false
+  failed_when: terraform.rc != 0 and terraform.rc != 127
+
+- name: Install the latest version of Terraform.
+  ansible.builtin.command: tfenv install
+  when: terraform.rc == 127
+
+- name: Install tflint.
+  homebrew:
+    name: tflint
+    state: present
+
+- name: Install tfsec.
+  homebrew:
+    name: tfsec
+    state: present
