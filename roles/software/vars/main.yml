@@ -8,6 +8,7 @@ install_casks:
   - 1password
   - affinity-designer
   - alfred
+  - balsamiq-wireframes
   - bartender
   - betterdummy
   - camo-studio
