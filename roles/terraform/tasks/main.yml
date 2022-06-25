@@ -5,14 +5,14 @@
     state: present
 
 - name: Check if Terraform is installed.
-  ansible.builtin.command: terraform --help
+  ansible.builtin.command: command -v terraform >/dev/null 2>&1
   register: terraform
   changed_when: false
-  failed_when: terraform.rc != 0 and terraform.rc != 127
+  failed_when: terraform.rc != 0 and terraform.rc != 1
 
 - name: Install the latest version of Terraform.
   ansible.builtin.command: tfenv install
-  when: terraform.rc == 127
+  when: terraform.rc == 1
 
 - name: Install tflint.
   homebrew:
