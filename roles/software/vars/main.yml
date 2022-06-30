@@ -4,6 +4,8 @@ install_formulae:
   - gh
   - gifski
   - pre-commit
+  - shellcheck
+  - shfmt
 
 install_casks:
   - 1password
