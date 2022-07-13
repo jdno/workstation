@@ -1,0 +1,11 @@
+---
+- name: Install PHP.
+  homebrew:
+    name: php
+    state: present
+
+- name: Add composer to the PATH
+  ansible.builtin.copy:
+    src: "php.zsh"
+    dest: "{{ zsh_config_dir }}/php.zsh"
+    mode: 0644
