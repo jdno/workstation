@@ -16,6 +16,7 @@
     - { role: git, tags: ["base", "terminal", "dev"] }
 
     # Install programming languages
+    - { role: php, tags: ["terminal", "dev"] }
     - { role: rust, tags: ["terminal", "dev"] }
     - { role: terraform, tags: ["terminal", "dev"] }
 
