@@ -1,6 +1,5 @@
 ---
 install_formulae:
-  - awscli
   - doctl
   - gh
   - gifski
