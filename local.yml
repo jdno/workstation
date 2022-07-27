@@ -44,6 +44,10 @@
           user: { email: "jd@devxbots.com", signing_key: "6DBACDEF75E27D72" }
         - repo: { owner: devxbots, name: app, stack: node }
           user: { email: "jd@devxbots.com", signing_key: "6DBACDEF75E27D72" }
+        - repo: { owner: devxbots, name: automatons, stack: rust }
+          user: { email: "jd@devxbots.com", signing_key: "6DBACDEF75E27D72" }
+        - repo: { owner: devxbots, name: automatons-aws-runtime, stack: rust }
+          user: { email: "jd@devxbots.com", signing_key: "6DBACDEF75E27D72" }
         - repo: { owner: devxbots, name: dashboard, stack: node }
           user: { email: "jd@devxbots.com", signing_key: "6DBACDEF75E27D72" }
         - repo: { owner: devxbots, name: github-parts, stack: rust }
