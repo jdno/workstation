@@ -69,7 +69,7 @@
       - name: Firefox
         path: /Applications/Firefox.app/
         pos: 5
-      - name: Hey
+      - name: HEY
         path: /Applications/Hey.app/
         pos: 6
       - name: System Preferences
