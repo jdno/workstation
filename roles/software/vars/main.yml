@@ -19,6 +19,7 @@ install_casks:
   - docker
   - firefox
   - hey
+  - iterm2
   - jetbrains-toolbox
   - keka
   - signal
