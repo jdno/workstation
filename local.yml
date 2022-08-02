@@ -33,33 +33,4 @@
         project: "{{ project_item }}"
       loop_control:
         loop_var: project_item
-      loop:
-        - repo: { owner: jdno, name: alfred-gitignore, stack: rust }
-        - repo: { owner: jdno, name: auto-traffic-control, stack: monorepo }
-        - repo: { owner: jdno, name: godot-logger, stack: rust }
-        - repo: { owner: jdno, name: node-traffic-controller, stack: node }
-        - repo: { owner: jdno, name: setup-butler, stack: node }
-        - repo: { owner: jdno, name: workstation, stack: ansible }
-        - repo: { owner: jdno, name: yggdrasil, stack: terraform }
-        - repo: { owner: devxbots, name: ".github", stack: markdown }
-          user: { email: "jd@devxbots.com", signing_key: "6DBACDEF75E27D72" }
-        - repo: { owner: devxbots, name: checkbot, stack: rust }
-          user: { email: "jd@devxbots.com", signing_key: "6DBACDEF75E27D72" }
-        - repo: { owner: devxbots, name: app, stack: node }
-          user: { email: "jd@devxbots.com", signing_key: "6DBACDEF75E27D72" }
-        - repo: { owner: devxbots, name: automatons, stack: rust }
-          user: { email: "jd@devxbots.com", signing_key: "6DBACDEF75E27D72" }
-        - repo: { owner: devxbots, name: automatons-aws-runtime, stack: rust }
-          user: { email: "jd@devxbots.com", signing_key: "6DBACDEF75E27D72" }
-        - repo: { owner: devxbots, name: dashboard, stack: node }
-          user: { email: "jd@devxbots.com", signing_key: "6DBACDEF75E27D72" }
-        - repo: { owner: devxbots, name: github-parts, stack: rust }
-          user: { email: "jd@devxbots.com", signing_key: "6DBACDEF75E27D72" }
-        - repo: { owner: devxbots, name: octox, stack: rust }
-          user: { email: "jd@devxbots.com", signing_key: "6DBACDEF75E27D72" }
-        - repo: { owner: devxbots, name: template, stack: markdown }
-          user: { email: "jd@devxbots.com", signing_key: "6DBACDEF75E27D72" }
-        - repo: { owner: devxbots, name: werkstatt, stack: terraform }
-          user: { email: "jd@devxbots.com", signing_key: "6DBACDEF75E27D72" }
-        - repo: { owner: rckive, name: rckive-server, stack: rust }
-          user: { email: "jd@devxbots.com", signing_key: "6DBACDEF75E27D72" }
+      loop: "{{ repositories }}"
