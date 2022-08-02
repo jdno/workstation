@@ -41,6 +41,8 @@
         - repo: { owner: jdno, name: setup-butler, stack: node }
         - repo: { owner: jdno, name: workstation, stack: ansible }
         - repo: { owner: jdno, name: yggdrasil, stack: terraform }
+        - repo: { owner: devxbots, name: ".github", stack: markdown }
+          user: { email: "jd@devxbots.com", signing_key: "6DBACDEF75E27D72" }
         - repo: { owner: devxbots, name: checkbot, stack: rust }
           user: { email: "jd@devxbots.com", signing_key: "6DBACDEF75E27D72" }
         - repo: { owner: devxbots, name: app, stack: node }
