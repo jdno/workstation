@@ -3,6 +3,7 @@ install_formulae:
   - doctl
   - gh
   - gifski
+  - jq
   - pre-commit
   - shellcheck
   - shfmt
