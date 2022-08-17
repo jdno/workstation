@@ -1,0 +1,35 @@
+---
+- name: Install Python.
+  homebrew:
+    name: python@3.10
+    state: present
+
+- name: Update pip.
+  ansible.builtin.command: python3 -m pip install --upgrade pip
+  changed_when: false
+
+- name: Update setuptools.
+  ansible.builtin.command: python3 -m pip install --upgrade setuptools
+  changed_when: false
+
+- name: Check if Poetry is installed.
+  ansible.builtin.command: command -v poetry >/dev/null 2>&1
+  register: poetry
+  changed_when: false
+  failed_when: poetry.rc != 0 and poetry.rc != 1
+
+- name: Download Poetry installer.
+  ansible.builtin.get_url:
+    url: https://install.python-poetry.org
+    dest: /tmp/poetry-installer.py
+    mode: 0644
+  when: poetry.rc != 0
+
+- name: Install Poetry
+  ansible.builtin.command: python3 /tmp/poetry-installer.py
+  when: poetry.rc != 0
+
+- name: Remove Poetry installer.
+  ansible.builtin.file:
+    path: /tmp/poetry-installer.py
+    state: absent
