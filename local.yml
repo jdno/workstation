@@ -18,6 +18,7 @@
     # Install programming languages and tools
     - { role: aws, tags: ["terminal", "dev"] }
     - { role: php, tags: ["terminal", "dev"] }
+    - { role: python, tags: ["terminal", "dev", "python"] }
     - { role: rust, tags: ["terminal", "dev"] }
     - { role: terraform, tags: ["terminal", "dev"] }
 
