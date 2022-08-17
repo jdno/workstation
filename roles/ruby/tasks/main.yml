@@ -1,0 +1,26 @@
+---
+- name: Install rbenv.
+  homebrew:
+    name: rbenv
+    state: present
+
+- name: Install ruby-build.
+  homebrew:
+    name: ruby-build
+    state: present
+
+- name: Add rbenv to the PATH
+  ansible.builtin.template:
+    src: "ruby.zsh.j2"
+    dest: "{{ zsh_config_dir }}/ruby.zsh"
+    mode: 0644
+
+- name: Install Ruby.
+  ansible.builtin.command: rbenv install 3.1.2
+  register: rbenv_install
+  changed_when: false
+  failed_when: rbenv_install.rc != 0 and "already exists" not in rbenv_install.stderr
+
+- name: Set default Ruby.
+  ansible.builtin.command: rbenv global 3.1.2
+  changed_when: false
