@@ -18,8 +18,8 @@
     mode: 0644
 
 - name: Copy IdeaVim configuration.
-  ansible.builtin.copy:
-    src: "ideavimrc"
+  ansible.builtin.template:
+    src: "ideavimrc.j2"
     dest: "{{ ansible_env['HOME'] }}/.ideavimrc"
     mode: 0644
 
