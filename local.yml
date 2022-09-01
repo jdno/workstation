@@ -4,16 +4,14 @@
 
   roles:
     # Set up tooling
-    - { role: geerlingguy.mac.homebrew, tags: ["base"] }
-
-    # Set up Ansible
+    - { role: homebrew, tags: ["base"] }
     - { role: ansible, tags: ["base"] }
 
     # Configure terminal applications
-    - { role: ssh, tags: ["base", "terminal"] }
-    - { role: shell, tags: ["base", "terminal"] }
-    - { role: neovim, tags: ["base", "terminal"] }
-    - { role: git, tags: ["base", "terminal", "dev"] }
+    - { role: ssh, tags: ["terminal"] }
+    - { role: shell, tags: ["terminal"] }
+    - { role: neovim, tags: ["terminal"] }
+    - { role: git, tags: ["terminal", "dev"] }
 
     # Install programming languages and tools
     - { role: aws, tags: ["terminal", "dev"] }

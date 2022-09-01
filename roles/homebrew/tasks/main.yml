@@ -1,0 +1,14 @@
+---
+- name: Install Homebrew.
+  ansible.builtin.include_role:
+    name: geerlingguy.mac.homebrew
+
+- name: Print Homebrew prefix.
+  ansible.builtin.command:
+    cmd: brew --prefix
+  register: brew_prefix
+  changed_when: false
+
+- name: Set Homebrew prefix as fact.
+  ansible.builtin.set_fact:
+    brew_prefix: "{{ brew_prefix.stdout }}"
