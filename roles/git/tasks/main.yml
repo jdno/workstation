@@ -65,9 +65,14 @@
     state: present
 
 - name: Copy Git aliases.
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: "{{ item }}"
     dest: "{{ zsh_config_dir }}/{{ item | basename }}"
     mode: 0644
   with_fileglob:
-    - "files/*.zsh"
+    - "templates/*.j2"
+
+- name: Remove git alias.
+  ansible.builtin.file:
+    path: "{{ zsh_config_dir }}/git.zsh"
+    state: absent

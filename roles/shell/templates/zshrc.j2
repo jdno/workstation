@@ -1,8 +1,8 @@
-eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$({{ brew_prefix }}/bin/brew shellenv)"
 eval "$(starship init zsh)"
 
 # https://docs.brew.sh/Shell-Completion
-FPATH="{{ homebrew_prefix }}/share/zsh/site-functions:${FPATH}"
+FPATH="{{ brew_prefix }}/share/zsh/site-functions:${FPATH}"
 
 # The following lines were added by compinstall
 zstyle :compinstall filename '{{ zsh_config_dir }}/.zshrc'
@@ -22,4 +22,4 @@ for file in {{ zsh_config_dir }}/*.zsh; do
 done
 
 # Must be the last instructions
-source "{{ homebrew_prefix }}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "{{ brew_prefix }}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
