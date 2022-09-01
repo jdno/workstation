@@ -20,7 +20,7 @@
   register: git_clone_result
   ignore_errors: true
 
-- name: Configure default Git user email.
+- name: Configure Git user email.
   git_config:
     scope: local
     repo: "{{ repo_directory.path }}"
@@ -28,7 +28,7 @@
     value: "{{ project.user.email }}"
   when: project.user.email is defined and project.user.email != ""
 
-- name: Configure default PGP signing key.
+- name: Configure PGP signing key.
   git_config:
     scope: local
     repo: "{{ repo_directory.path }}"
@@ -47,6 +47,24 @@
     chdir: "{{ repo_directory.path }}"
   when: pre_commit_yaml.stat.exists
   ignore_errors: true
+
+- name: Check if the project uses Node.
+  ansible.builtin.stat:
+    path: "{{ repo_directory.path }}/package.json"
+  register: package_json
+
+- name: Install npm dependencies.
+  ansible.builtin.command:
+    cmd: npm install
+    chdir: "{{ repo_directory.path }}"
+  when: package_json.stat.exists
+  ignore_errors: true
+
+- name: Clean Node modules.
+  ansible.builtin.file:
+    path: "{{ repo_directory.path }}/node_modules"
+    state: absent
+  when: package_json.stat.exists and archived
 
 - name: Check if the project uses Rust.
   ansible.builtin.stat:
