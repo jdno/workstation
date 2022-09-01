@@ -26,15 +26,5 @@ if ! command -v gpg &>/dev/null; then
 	brew install gpg-suite-no-mail
 fi
 
-# Install 1Password CLI
-if ! command -v op &>/dev/null; then
-	brew install 1password-cli
-fi
-
-# Create 1Password session
-op account add
-# shellcheck disable=SC2046
-eval $(op signin)
-
 # Run playbook
 ANSIBLE_FORCE_COLOR=1 ansible-pull -K -U https://github.com/jdno/workstation.git
