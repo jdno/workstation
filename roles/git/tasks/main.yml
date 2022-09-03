@@ -58,12 +58,6 @@
     scope: global
     value: true
 
-- name: Install Graphite.
-  community.general.npm:
-    name: "@withgraphite/graphite-cli"
-    global: yes
-    state: present
-
 - name: Copy Git aliases.
   ansible.builtin.template:
     src: "{{ item }}"
