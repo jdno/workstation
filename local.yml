@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: all
   connection: local
 
   roles:
@@ -14,12 +14,29 @@
     - { role: git, tags: ["terminal", "dev"] }
 
     # Install programming languages and tools
-    - { role: aws, tags: ["terminal", "dev"] }
-    - { role: php, tags: ["terminal", "dev"] }
-    - { role: python, tags: ["terminal", "dev", "python"] }
-    - { role: ruby, tags: ["terminal", "dev", "ruby"] }
-    - { role: rust, tags: ["terminal", "dev"] }
-    - { role: terraform, tags: ["terminal", "dev"] }
+    - role: aws
+      when: '"aws" in stacks'
+      tags: ["terminal", "dev"]
+
+    - role: php
+      when: '"php" in stacks'
+      tags: ["terminal", "dev", "php"]
+
+    - role: python
+      when: '"python" in stacks'
+      tags: ["terminal", "dev", "python"]
+
+    - role: ruby
+      when: '"ruby" in stacks'
+      tags: ["terminal", "dev", "ruby"]
+
+    - role: rust
+      when: '"rust" in stacks'
+      tags: ["terminal", "dev", "rust"]
+
+    - role: terraform
+      when: '"terraform" in stacks'
+      tags: ["terminal", "dev", "terraform"]
 
     # Install applications
     - { role: software, tags: ["workstation"] }

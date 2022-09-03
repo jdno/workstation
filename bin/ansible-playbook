@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Enable strict mode for Bash
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+ansible-playbook -K -i hosts --limit "$(hostname -s)" local.yml
