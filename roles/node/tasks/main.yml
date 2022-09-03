@@ -1,0 +1,10 @@
+---
+- name: Install Node.
+  homebrew:
+    name: node
+    state: present
+
+- name: Install npm.
+  homebrew:
+    name: npm
+    state: present
