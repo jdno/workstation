@@ -4,6 +4,7 @@ name: Ansible
 "on":
   push:
     paths:
+      - "host_vars/**"
       - "roles/**"
       - "ansible.cfg"
       - "hosts"
@@ -21,11 +22,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Overwrite vault with example variables
-        run: |
-          cd host_vars
-          cp test.yml localhost.yml
 
       - name: Ansible Lint
         uses: ansible-community/ansible-lint-action@v6.3.0

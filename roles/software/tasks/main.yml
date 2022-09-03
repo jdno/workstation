@@ -8,19 +8,19 @@
   homebrew:
     name: "{{ item }}"
     state: present
-  loop: "{{ install_formulae }}"
+  loop: "{{ formulae }}"
 
 - name: Install applications through Homebrew Cask.
   homebrew_cask:
     name: "{{ item }}"
     state: present
-  loop: "{{ install_casks }}"
+  loop: "{{ casks }}"
 
 - name: Install applications from Mac App Store.
   ansible.builtin.import_role:
     name: geerlingguy.mac.mas
   vars:
-    mas_installed_apps: "{{ install_mac_store_apps }}"
+    mas_installed_apps: "{{ apps }}"
 
 # Workaround for https://github.com/kcrawford/dockutil/issues/127
 - name: Tap repository for dockutil.
@@ -30,7 +30,7 @@
 
 - name: Install a version of dockutil that supports Monterey.
   homebrew_cask:
-    name: hpedrorodrigues/tools/dockutil
+    name: dockutil
     state: present
 
 - name: Configure the Dock.
@@ -56,22 +56,4 @@
       - TextEdit
       - News
 
-    dockitems_persist:
-      - name: Messages
-        path: /Applications/Messages.app/
-        pos: 2
-      - name: FaceTime
-        path: /Applications/FaceTime.app/
-        pos: 3
-      - name: Calendar
-        path: /Applications/Calendar.app/
-        pos: 4
-      - name: Firefox
-        path: /Applications/Firefox.app/
-        pos: 5
-      - name: HEY
-        path: /Applications/Hey.app/
-        pos: 6
-      - name: System Preferences
-        path: /Applications/System Preferences.app/
-        pos: 7
+    dockitems_persist: "{{ dock_items }}"
