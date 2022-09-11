@@ -34,6 +34,10 @@
       when: '"rust" in stacks'
       tags: ["terminal", "dev", "rust"]
 
+    - role: packer
+      when: '"packer" in stacks'
+      tags: ["terminal", "dev", "packer"]
+
     - role: terraform
       when: '"terraform" in stacks'
       tags: ["terminal", "dev", "terraform"]
