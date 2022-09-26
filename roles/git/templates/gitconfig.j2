@@ -1,0 +1,16 @@
+[user]
+        name = {{ git.username }}
+        email = {{ git.email }}
+        signingkey = {{ git.signing_key }}
+[core]
+        editor = nvim
+        excludesfile = {{ ansible_env['HOME'] }}/.gitignore_global
+[commit]
+        gpgsign = True
+[init]
+        defaultBranch = main
+[pull]
+        rebase = True
+[push]
+        default = current
+        followTags = True

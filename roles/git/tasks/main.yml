@@ -4,59 +4,11 @@
     name: git
     state: present
 
-- name: Configure default Git user name.
-  git_config:
-    name: user.name
-    scope: global
-    value: "{{ git.username }}"
-
-- name: Configure default Git user email.
-  git_config:
-    name: user.email
-    scope: global
-    value: "{{ git.email }}"
-
-- name: Configure default PGP signing key.
-  git_config:
-    name: user.signingkey
-    scope: global
-    value: "{{ git.signing_key }}"
-
-- name: Configure editor for commit messages.
-  git_config:
-    name: core.editor
-    scope: global
-    value: nvim
-
 - name: Create global excludes file.
   ansible.builtin.copy:
     src: gitignore_global
     dest: "{{ git_excludes_file }}"
     mode: 0644
-
-- name: Set global excludes file.
-  git_config:
-    name: core.excludesfile
-    scope: global
-    value: "{{ git_excludes_file }}"
-
-- name: Enable signing commits.
-  git_config:
-    name: commit.gpgsign
-    scope: global
-    value: true
-
-- name: Set current branch as default push target.
-  git_config:
-    name: push.default
-    scope: global
-    value: current
-
-- name: Enable pushing tags with their associated commits.
-  git_config:
-    name: push.followTags
-    scope: global
-    value: true
 
 - name: Copy Git aliases.
   ansible.builtin.template:
@@ -64,7 +16,13 @@
     dest: "{{ zsh_config_dir }}/{{ item | basename }}"
     mode: 0644
   with_fileglob:
-    - "templates/*.j2"
+    - "templates/*.zsh.j2"
+
+- name: Copy Git configuration.
+  ansible.builtin.template:
+    src: gitconfig.j2
+    dest: "{{ ansible_env['HOME'] }}/.gitconfig"
+    mode: 0644
 
 - name: Remove git alias.
   ansible.builtin.file:
