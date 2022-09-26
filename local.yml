@@ -44,6 +44,9 @@
 
     # Install applications
     - { role: software, tags: ["workstation"] }
+    - role: work_e
+      when: '"rust" in stacks'
+      tags: ["terminal", "workstation", "rust"]
 
   tasks:
     - name: Manage Git repositories
