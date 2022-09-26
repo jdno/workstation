@@ -9,11 +9,6 @@
     name: awscli
     state: present
 
-- name: Install the SAM CLI.
-  homebrew:
-    name: aws-sam-cli
-    state: present
-
 - name: Ensure AWS config directory exists.
   ansible.builtin.file:
     path: "{{ aws_config_directory }}"
