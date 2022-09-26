@@ -1,0 +1,16 @@
+---
+- name: Fetch the jdno/WORK-E repository
+  ansible.builtin.import_role:
+    name: repository
+  vars:
+    project:
+      repo:
+        owner: jdno
+        name: WORK-E
+        stack: rust
+
+- name: Install the WORK-E CLI
+  ansible.builtin.command:
+    cmd: cargo install --path work-e-cli
+    chdir: "{{ repo_directory.path }}"
+  changed_when: false
