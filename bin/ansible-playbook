@@ -5,4 +5,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+# shellcheck disable=SC2046
+eval $(op signin --account morethan.1password.com)
+
 ansible-playbook -K -i hosts --limit "$(hostname -s)" local.yml
