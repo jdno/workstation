@@ -1,2 +1,3 @@
 ---
 aws_config_directory: "{{ ansible_env['HOME'] }}/.aws"
+onepassword_vault:
