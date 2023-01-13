@@ -22,6 +22,10 @@
     dest: "{{ aws_config_directory }}/config"
     mode: 0600
 
+- name: Print the 1Password vault from which to retrieve AWS credentials.
+  ansible.builtin.debug:
+    msg: "1Password vault: {{ onepassword_vault }}"
+
 - name: Configure credentials.
   ansible.builtin.template:
     src: credentials.j2
