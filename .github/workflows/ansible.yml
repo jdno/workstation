@@ -1,5 +1,5 @@
 ---
-name: JSON
+name: Ansible
 
 "on":
   push:
@@ -24,7 +24,11 @@ jobs:
         uses: tj-actions/changed-files@v35
         with:
           files: |
-            **/*.json
+            host_vars/**
+            roles/**
+            ansible.cfg
+            local.yml
+            requirements.yml
 
       - name: Print changed files
         run: |
@@ -32,8 +36,8 @@ jobs:
             echo "$file"
           done
 
-  style:
-    name: Check style
+  lint:
+    name: Lint code
     runs-on: ubuntu-latest
 
     needs: detect-changes
@@ -43,8 +47,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: prettier
-        uses: creyD/prettier_action@v4.3
+      - name: Ansible Lint
+        uses: ansible-community/ansible-lint-action@v6.16.0
         with:
-          dry: true
-          prettier_options: "--check **/*.json"
+          path: local.yml
