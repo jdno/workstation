@@ -1,21 +1,21 @@
 ---
 - name: Install zsh.
-  homebrew:
+  community.general.homebrew:
     name: zsh
     state: present
 
 - name: Install syntax highlighting for zsh.
-  homebrew:
+  community.general.homebrew:
     name: zsh-syntax-highlighting
     state: present
 
 - name: Install completions for zsh.
-  homebrew:
+  community.general.homebrew:
     name: zsh-completions
     state: present
 
 - name: Install coreutils.
-  homebrew:
+  community.general.homebrew:
     name: coreutils
     state: present
 
@@ -32,7 +32,7 @@
 
 - name: Create zsh configuration directory.
   ansible.builtin.file:
-    path: "{{ zsh_config_dir }}"
+    path: "{{ shell_zsh_config_dir }}"
     owner: "{{ ansible_user_id }}"
     state: directory
     mode: 0700
@@ -46,19 +46,19 @@
 - name: Copy zshrc.
   ansible.builtin.template:
     src: zshrc.j2
-    dest: "{{ zsh_config_dir }}/.zshrc"
+    dest: "{{ shell_zsh_config_dir }}/.zshrc"
     mode: 0644
 
 - name: Copy zsh aliases.
   ansible.builtin.copy:
     src: "{{ item }}"
-    dest: "{{ zsh_config_dir }}/{{ item | basename }}"
+    dest: "{{ shell_zsh_config_dir }}/{{ item | basename }}"
     mode: 0644
   with_fileglob:
     - "files/*.zsh"
 
 - name: Install Starship shell prompt.
-  homebrew:
+  community.general.homebrew:
     name: starship
     state: present
 

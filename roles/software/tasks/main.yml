@@ -5,13 +5,13 @@
     state: present
 
 - name: Install applications through Homebrew.
-  homebrew:
+  community.general.homebrew:
     name: "{{ item }}"
     state: present
   loop: "{{ formulae }}"
 
 - name: Install applications through Homebrew Cask.
-  homebrew_cask:
+  community.general.homebrew_cask:
     name: "{{ item }}"
     state: present
   loop: "{{ casks }}"
@@ -29,7 +29,7 @@
     state: present
 
 - name: Install a version of dockutil that supports Monterey.
-  homebrew_cask:
+  community.general.homebrew_cask:
     name: dockutil
     state: present
 
@@ -37,7 +37,7 @@
   ansible.builtin.import_role:
     name: geerlingguy.mac.dock
   vars:
-    dockitems_remove:
+    dockitems_remove: # noqa var-naming[no-role-prefix]
       - Launchpad
       - Safari
       - Mail
@@ -56,4 +56,4 @@
       - TextEdit
       - News
 
-    dockitems_persist: "{{ dock_items }}"
+    dockitems_persist: "{{ dock_items }}" # noqa var-naming[no-role-prefix]

@@ -1,10 +1,10 @@
 ---
 - name: Install Node.
-  homebrew:
+  community.general.homebrew:
     name: node
     state: present
 
 - name: Install npm.
-  homebrew:
+  community.general.homebrew:
     name: npm
     state: present

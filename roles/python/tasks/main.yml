@@ -1,6 +1,6 @@
 ---
 - name: Install Python.
-  homebrew:
+  community.general.homebrew:
     name: python@3.10
     state: present
 
@@ -28,6 +28,7 @@
 - name: Install Poetry
   ansible.builtin.command: python3 /tmp/poetry-installer.py
   when: poetry.rc != 0
+  changed_when: poetry.rc == 0
 
 - name: Remove Poetry installer.
   ansible.builtin.file:

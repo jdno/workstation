@@ -1,6 +1,6 @@
 ---
 - name: Install PHP.
-  homebrew:
+  community.general.homebrew:
     name: php
     state: present
 

@@ -1,11 +1,11 @@
 ---
 - name: Install rbenv.
-  homebrew:
+  community.general.homebrew:
     name: rbenv
     state: present
 
 - name: Install ruby-build.
-  homebrew:
+  community.general.homebrew:
     name: ruby-build
     state: present
 
