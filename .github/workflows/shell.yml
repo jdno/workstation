@@ -6,6 +6,7 @@ name: Shell
     branches:
       - main
   pull_request:
+  workflow_dispatch:
 
 jobs:
   detect-changes:
@@ -24,11 +25,12 @@ jobs:
         uses: tj-actions/changed-files@v45
         with:
           files: |
+            .github/workflows/shell.yml
             bin/*
 
       - name: Print changed files
         run: |
-          for file in ${{ steps.changed-files-specific.outputs.all_changed_files }}; do
+          for file in ${{ steps.detect-changes.outputs.all_changed_files }}; do
             echo "$file"
           done
 
@@ -37,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
 
     needs: detect-changes
-    if: needs.detect-changes.outputs.any_changed == 'true'
+    if: needs.detect-changes.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
 
     steps:
       - name: Checkout code
@@ -53,7 +55,7 @@ jobs:
     runs-on: ubuntu-latest
 
     needs: detect-changes
-    if: needs.detect-changes.outputs.any_changed == 'true'
+    if: needs.detect-changes.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
 
     steps:
       - name: Checkout code
