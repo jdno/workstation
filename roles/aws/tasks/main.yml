@@ -5,7 +5,7 @@
     state: present
 
 - name: Install the AWS CLI.
-  homebrew:
+  community.general.homebrew:
     name: awscli
     state: present
 
@@ -24,7 +24,7 @@
 
 - name: Print the 1Password vault from which to retrieve AWS credentials.
   ansible.builtin.debug:
-    msg: "1Password vault: {{ onepassword_vault }}"
+    msg: "1Password vault: {{ aws_onepassword_vault }}"
 
 - name: Configure credentials.
   ansible.builtin.template:

@@ -47,6 +47,6 @@ repos:
       - id: shfmt
         name: shfmt
   - repo: https://github.com/ansible/ansible-lint
-    rev: v6.3.0
+    rev: v24.7.0
     hooks:
       - id: ansible-lint

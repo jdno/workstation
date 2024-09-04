@@ -1,7 +1,7 @@
 [user]
-        name = {{ git.username }}
-        email = {{ git.email }}
-        signingkey = {{ git.signing_key }}
+        name = {{ git_user.username }}
+        email = {{ git_user.email }}
+        signingkey = {{ git_user.signing_key }}
 [core]
         editor = nvim
         excludesfile = {{ ansible_env['HOME'] }}/.gitignore_global

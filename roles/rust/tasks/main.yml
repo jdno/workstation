@@ -1,6 +1,6 @@
 ---
 - name: Install the Rust toolchain installer.
-  homebrew:
+  community.general.homebrew:
     name: rustup-init
     state: present
 
@@ -11,20 +11,12 @@
 
 - name: Install the latest Rust stable toolchain.
   ansible.builtin.command: rustup-init -y -c cargo rustfmt clippy
+  register: rustup_init
   when: not cargo.stat.exists
+  changed_when: rustup_init.rc == 0
 
 - name: Add Rust to the PATH
   ansible.builtin.copy:
     src: "rust.zsh"
     dest: "{{ zsh_config_dir }}/rust.zsh"
     mode: 0644
-
-- name: Check if cargo-edit is installed.
-  ansible.builtin.command: cargo add --help
-  register: cargo_edit
-  changed_when: false
-  failed_when: cargo_edit.rc != 0 and cargo_edit.rc != 101
-
-- name: Install cargo-edit.
-  ansible.builtin.command: cargo install cargo-edit
-  when: cargo_edit.rc == 101

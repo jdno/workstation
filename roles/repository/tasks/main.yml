@@ -1,39 +1,39 @@
 ---
 - name: Create directory for owner.
   ansible.builtin.file:
-    path: "{{ ansible_env['HOME'] }}/Developer/{{ project.repo.owner }}"
+    path: "{{ ansible_env['HOME'] }}/Developer/{{ repository_project.repo.owner }}"
     state: directory
     mode: 0755
   register: owner_directory
 
 - name: Create directory for repository.
   ansible.builtin.file:
-    path: "{{ owner_directory.path }}/{{ project.repo.name }}"
+    path: "{{ owner_directory.path }}/{{ repository_project.repo.name }}"
     state: directory
     mode: 0755
   register: repo_directory
 
 - name: Clone Git repository.
   ansible.builtin.git:
-    repo: "git@github.com:{{ project.repo.owner }}/{{ project.repo.name }}.git"
+    repo: "git@github.com:{{ repository_project.repo.owner }}/{{ repository_project.repo.name }}.git"
     dest: "{{ repo_directory.path }}"
   register: git_clone_result
   ignore_errors: true
 
 - name: Configure Git user email.
-  git_config:
+  community.general.git_config:
     scope: local
     repo: "{{ repo_directory.path }}"
     name: user.email
-    value: "{{ project.user.email }}"
+    value: "{{ repository_project.user.email }}"
   when: project.user.email is defined and project.user.email != ""
 
 - name: Configure PGP signing key.
-  git_config:
+  community.general.git_config:
     scope: local
     repo: "{{ repo_directory.path }}"
     name: user.signingkey
-    value: "{{ project.user.signing_key }}"
+    value: "{{ repository_project.user.signing_key }}"
   when: project.user.signing_key is defined and project.user.signing_key != ""
 
 - name: Check if the project uses pre-commit.
@@ -45,8 +45,10 @@
   ansible.builtin.command:
     cmd: pre-commit install
     chdir: "{{ repo_directory.path }}"
+  register: pre_commit_install
   when: pre_commit_yaml.stat.exists
-  ignore_errors: true
+  changed_when: pre_commit_install.rc == 0
+  failed_when: pre_commit_install.rc != 0
 
 - name: Check if the project uses Node.
   ansible.builtin.stat:
@@ -57,14 +59,16 @@
   ansible.builtin.command:
     cmd: npm install
     chdir: "{{ repo_directory.path }}"
+  register: npm_install
   when: package_json.stat.exists
-  ignore_errors: true
+  changed_when: npm_install.rc == 0
+  failed_when: npm_install.rc != 0
 
 - name: Clean Node modules.
   ansible.builtin.file:
     path: "{{ repo_directory.path }}/node_modules"
     state: absent
-  when: package_json.stat.exists and archived
+  when: package_json.stat.exists and repository_is_archived
 
 - name: Check if the project uses Rust.
   ansible.builtin.stat:
@@ -75,11 +79,13 @@
   ansible.builtin.command:
     cmd: cargo build
     chdir: "{{ repo_directory.path }}"
+  register: cargo_build
   when: cargo_toml.stat.exists
-  ignore_errors: true
+  changed_when: cargo_build.rc == 0
+  failed_when: cargo_build.rc != 0
 
 - name: Clean Rust artifacts.
   ansible.builtin.file:
     path: "{{ repo_directory.path }}/target"
     state: absent
-  when: cargo_toml.stat.exists and archived
+  when: cargo_toml.stat.exists and repository_is_archived

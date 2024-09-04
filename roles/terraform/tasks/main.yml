@@ -1,6 +1,6 @@
 ---
 - name: Install the Terraform Version Manager.
-  homebrew:
+  community.general.homebrew:
     name: tfenv
     state: present
 
@@ -12,14 +12,16 @@
 
 - name: Install the latest version of Terraform.
   ansible.builtin.command: tfenv install
+  register: tfenv_install
   when: terraform.rc == 1
+  changed_when: tfenv_install.rc == 0
 
 - name: Install tflint.
-  homebrew:
+  community.general.homebrew:
     name: tflint
     state: present
 
 - name: Install tfsec.
-  homebrew:
+  community.general.homebrew:
     name: tfsec
     state: present

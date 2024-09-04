@@ -45,6 +45,8 @@ jobs:
 
       - name: Lint code with Shellcheck
         uses: ludeeus/action-shellcheck@2.0.0
+        env:
+          SHELLCHECK_OPTS: -e SC1071 -e SC1091
 
   style:
     name: Check style

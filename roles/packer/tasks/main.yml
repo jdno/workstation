@@ -5,6 +5,6 @@
     state: present
 
 - name: Install packer.
-  homebrew:
+  community.general.homebrew:
     name: packer
     state: present

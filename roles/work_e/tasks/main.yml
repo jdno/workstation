@@ -3,7 +3,7 @@
   ansible.builtin.import_role:
     name: repository
   vars:
-    project:
+    repository_project:
       repo:
         owner: jdno
         name: WORK-E

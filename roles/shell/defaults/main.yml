@@ -1,2 +1,2 @@
 ---
-zsh_config_dir: "{{ ansible_env['HOME'] }}/.config/zsh"
+shell_zsh_config_dir: "{{ ansible_env['HOME'] }}/.config/zsh"
