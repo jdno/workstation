@@ -9,22 +9,22 @@
     path: "{{ neovim_config_directory }}"
     owner: "{{ ansible_user_id }}"
     state: directory
-    mode: 0700
+    mode: "0700"
 
 - name: Copy neovim configuration.
   ansible.builtin.copy:
     src: "init.vim"
     dest: "{{ neovim_config_directory }}/init.vim"
-    mode: 0644
+    mode: "0644"
 
 - name: Copy IdeaVim configuration.
   ansible.builtin.template:
     src: "ideavimrc.j2"
     dest: "{{ ansible_env['HOME'] }}/.ideavimrc"
-    mode: 0644
+    mode: "0644"
 
 - name: Set neovim as default editor.
   ansible.builtin.copy:
     src: "neovim.zsh"
     dest: "{{ zsh_config_dir }}/neovim.zsh"
-    mode: 0644
+    mode: "0644"

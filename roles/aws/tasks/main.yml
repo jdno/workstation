@@ -14,13 +14,13 @@
     path: "{{ aws_config_directory }}"
     owner: "{{ ansible_user_id }}"
     state: directory
-    mode: 0700
+    mode: "0700"
 
 - name: Copy AWS CLI configuration.
   ansible.builtin.copy:
     src: "config"
     dest: "{{ aws_config_directory }}/config"
-    mode: 0600
+    mode: "0600"
 
 - name: Print the 1Password vault from which to retrieve AWS credentials.
   ansible.builtin.debug:
@@ -30,4 +30,4 @@
   ansible.builtin.template:
     src: credentials.j2
     dest: "{{ aws_config_directory }}/credentials"
-    mode: 0600
+    mode: "0600"

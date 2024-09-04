@@ -3,14 +3,14 @@
   ansible.builtin.file:
     path: "{{ ansible_env['HOME'] }}/Developer/{{ repository_project.repo.owner }}"
     state: directory
-    mode: 0755
+    mode: "0755"
   register: owner_directory
 
 - name: Create directory for repository.
   ansible.builtin.file:
     path: "{{ owner_directory.path }}/{{ repository_project.repo.name }}"
     state: directory
-    mode: 0755
+    mode: "0755"
   register: repo_directory
 
 - name: Clone Git repository.
