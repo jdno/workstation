@@ -19,4 +19,4 @@
   ansible.builtin.copy:
     src: "rust.zsh"
     dest: "{{ zsh_config_dir }}/rust.zsh"
-    mode: 0644
+    mode: "0644"

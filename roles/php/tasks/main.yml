@@ -8,4 +8,4 @@
   ansible.builtin.copy:
     src: "php.zsh"
     dest: "{{ zsh_config_dir }}/php.zsh"
-    mode: 0644
+    mode: "0644"
