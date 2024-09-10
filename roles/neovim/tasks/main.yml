@@ -26,5 +26,5 @@
 - name: Set neovim as default editor.
   ansible.builtin.copy:
     src: "neovim.zsh"
-    dest: "{{ zsh_config_dir }}/neovim.zsh"
+    dest: "{{ shell_zsh_config_dir }}/neovim.zsh"
     mode: "0644"

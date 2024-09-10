@@ -18,5 +18,5 @@
 - name: Add Rust to the PATH
   ansible.builtin.copy:
     src: "rust.zsh"
-    dest: "{{ zsh_config_dir }}/rust.zsh"
+    dest: "{{ shell_zsh_config_dir }}/rust.zsh"
     mode: "0644"

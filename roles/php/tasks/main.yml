@@ -7,5 +7,5 @@
 - name: Add composer to the PATH
   ansible.builtin.copy:
     src: "php.zsh"
-    dest: "{{ zsh_config_dir }}/php.zsh"
+    dest: "{{ shell_zsh_config_dir }}/php.zsh"
     mode: "0644"
