@@ -11,9 +11,4 @@
 
 - name: Install Python3.
   community.general.homebrew:
-    name: python@3.10
-
-- name: Install Ansible dependencies.
-  ansible.builtin.pip:
-    name: pexpect
-    state: present
+    name: python

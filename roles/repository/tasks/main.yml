@@ -62,7 +62,7 @@
   register: npm_install
   when: package_json.stat.exists
   changed_when: npm_install.rc == 0
-  failed_when: npm_install.rc != 0
+  failed_when: false
 
 - name: Clean Node modules.
   ansible.builtin.file:
@@ -82,7 +82,7 @@
   register: cargo_build
   when: cargo_toml.stat.exists
   changed_when: cargo_build.rc == 0
-  failed_when: cargo_build.rc != 0
+  failed_when: false
 
 - name: Clean Rust artifacts.
   ansible.builtin.file:

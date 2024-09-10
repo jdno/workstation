@@ -16,6 +16,8 @@
 
     # Install programming languages and tools
     - role: aws
+      vars:
+        aws_onepassword_vault: "{{ onepassword_vault }}"
       when: '"aws" in stacks'
       tags: ["terminal", "dev", "aws"]
 

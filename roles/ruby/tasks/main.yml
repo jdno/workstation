@@ -12,7 +12,7 @@
 - name: Add rbenv to the PATH
   ansible.builtin.template:
     src: "ruby.zsh.j2"
-    dest: "{{ zsh_config_dir }}/ruby.zsh"
+    dest: "{{ shell_zsh_config_dir }}/ruby.zsh"
     mode: "0644"
 
 - name: Install Ruby.

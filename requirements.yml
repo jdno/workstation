@@ -1,7 +1,10 @@
 ---
 roles:
   - name: elliotweiser.osx-command-line-tools
+    version: 2.3.0
 
 collections:
   - name: community.general
+    version: 9.3.0
   - name: geerlingguy.mac
+    version: 4.0.2
