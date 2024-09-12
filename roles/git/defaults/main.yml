@@ -1,2 +1,6 @@
 ---
 git_excludes_file: "{{ ansible_env['HOME'] }}/.gitignore_global"
+git_user:
+  username: "Jan David"
+  email: "jdno@jdno.dev"
+  signing_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKoH6CKep+6D+kqOQ+XJLY6fA/jGZ4hV934/wRX8mZBC"
