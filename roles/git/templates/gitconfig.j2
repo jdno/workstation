@@ -7,6 +7,10 @@
         excludesfile = {{ ansible_env['HOME'] }}/.gitignore_global
 [commit]
         gpgsign = True
+[gpg]
+        format = ssh
+[gpg "ssh"]
+        program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 [init]
         defaultBranch = main
 [pull]
